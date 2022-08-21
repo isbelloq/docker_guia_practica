@@ -11,7 +11,7 @@ Las opciones de `flags` pueden ser:
 * `-t` Se permite acceder a la terminal.
 * `-i` *interactive* Inicia el contendor en modo interactivo.
 * `-P` Se asigna un puerto de salida con disponibilidad aleatoria.
-* `-p [puerto_servidor:puerdt_contenedor]` Se asigna un puerto de salida.
+* `-p {puerto_servidor:puerdt_contenedor}` Se asigna un puerto de salida.
 
 ## Acciones basicas
 
@@ -79,3 +79,39 @@ Es posible renombrar un contenedor con el comando
 ```bash
 docker rename {identificador_contenedor} {nuevo_nombre}
 ```
+
+## Listado de contenedores
+
+Para listas los contenedores creados se usa el comando
+
+```bash
+docker ps [flags]
+```
+
+Por defecto solo se muestran los contenedores inicializado.
+
+Las opciones de `flags` pueden ser:
+* `-a` o `--all` Lista todos los contendores.
+* `-f {filtro}` o `--filter` Creacion de filtros para listado de contenedores.
+* `-n {numero_de_contenedores}` o `--last {numero_de_contenedores}` Listado de los ultimos n contenedores creados.
+* `-l` o `--latest` Muestra el ultimo contenedor creadoa.
+* `--no-trunc` No se limita la cantidad de caracteres en el listado de contenedores.
+* `-q` o `--quite` Muestra unicamente los identificadores.
+* `-s` o `--size` Muestra el tamanho de los contenedores
+
+## Registros
+
+Para mostrar los registros de los contenedores se usa el comando
+
+```bash
+docker logs [flags] {identificador_contenedor}
+```
+
+Las opciones de `flags` pueden ser:
+* `--details` Muestra la informacion detallada.
+* `-f` o `--follow` Espera por nuevos registros.
+* `--since {fecha}` Muestra los registro a partir de la fecha determinada.
+* `--tail {numero_de_registros}` Muestra los ultimos n registros o todos si se usa la palabra `all`.
+* `-t` o `--timestamps` Muestra la fecha y la hora del registro.
+* `-q` o `--quite` Muestra unicamente los identificadores.
+* `-s` o `--size` Muestra el tamanho de los contenedores
