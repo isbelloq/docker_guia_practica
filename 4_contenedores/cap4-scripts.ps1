@@ -9,21 +9,21 @@ docker --version
 docker -v
 
 # Iniciar contenedor
-docker start -ai --detach-keys "ctrl-u" 9dec89627d60d72961763e1f6cc7f82490f0efb64f0905922623c29eb3dc7460 # Nota: Como en VSCode esta Reservado ctrl-p, se agrega --detach-keys "ctrl-u" para salir del modo interactivo
+docker start -ai --detach-keys "ctrl-u" 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163 # Nota: Como en VSCode esta Reservado ctrl-p, se agrega --detach-keys "ctrl-u" para salir del modo interactivo
 
 # Acceder a la consola
-docker attach --detach-keys "ctrl-u" 9dec89627d60d72961763e1f6cc7f82490f0efb64f0905922623c29eb3dc7460
+docker attach --detach-keys "ctrl-u" 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163
 
 # Pausar el condenedor
-docker stop -t 60 9dec89627d60d72961763e1f6cc7f82490f0efb64f0905922623c29eb3dc7460
+docker stop -t 60 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163
 
 # Reiniciar un contendor
-docker start 9dec89627d60d72961763e1f6cc7f82490f0efb64f0905922623c29eb3dc7460 # Inicio del contenedor pausado
-docker restart 9dec89627d60d72961763e1f6cc7f82490f0efb64f0905922623c29eb3dc7460 # Reinicio del contenedor
+docker start 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163 # Inicio del contenedor pausado
+docker restart 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163 # Reinicio del contenedor
 
 # Renombrar un contenedor
 docker ps -l
-docker rename 9dec89627d60d72961763e1f6cc7f82490f0efb64f0905922623c29eb3dc7460 imagen_debian
+docker rename 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163 imagen_debian
 docker rename imagen_debian foo
 
 # Listado de contenedores
@@ -40,3 +40,33 @@ docker logs -t --tail 5 968770932b6f
 docker logs --since 2022-08-21T01:51:59.975612700Z 968770932b6f
 docker logs -f --since 2022-08-21T01:51:59.975612700Z 968770932b6f
 docker logs --since 2022-08-21T01:51:59.975612700Z --details 968770932b6f
+
+# Pausado de contenedor
+docker pause 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163
+
+# Reanudado de contenedor
+docker unpause 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163
+
+# Detener un contenedor a la fuerza
+docker kill 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163
+
+# Listado de procesos en el contenedor
+docker top 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163
+
+# Eliminado de contenedor
+docker stop 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163 # Antes de borrar el contenedor es necesaro detenerlo
+docker rm 4484b8f4ed29f8174cb1456a97b6199beeab108336ccf5cf87db85363249a163
+
+# Ejecucion de comandos en un contenedor
+docker exec -ti 3d89755482bb301f91e731063965f5e24b774d284ff361914a40d895494b8499 pwd
+docker exec -ti 3d89755482bb301f91e731063965f5e24b774d284ff361914a40d895494b8499 ls
+
+# Crear y ejecutar contenedores
+docker run --name servidor1 --hostname servidor1 --rm debian uname -a
+
+# Copias de seguridad
+docker export -o servidor1.tar 3d89755482bb301f91e731063965f5e24b774d284ff361914a40d895494b8499
+
+# Restauracion
+docker import servidor1.tar foo:20220824 # Restauracion del contenido del contenedor como una imagen
+docker run -ti --rm foo:20220824 cat /etc/debian_version
