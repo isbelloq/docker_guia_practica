@@ -70,3 +70,14 @@ docker export -o servidor1.tar 3d89755482bb301f91e731063965f5e24b774d284ff361914
 # Restauracion
 docker import servidor1.tar foo:20220824 # Restauracion del contenido del contenedor como una imagen
 docker run -ti --rm foo:20220824 cat /etc/debian_version
+
+# Inspeccion de contenedores
+docker inspect -f "{{.Created}}" 07d9246c53a6
+docker inspect -f "{{.ContainerConfig.Hostname}}" 07d9246c53a6
+
+# Estadisticas de uso
+docker stats --all
+docker stats --no-stream f4a7f53327e84b277c6f39f61d77ac22fd05ef26cd84ccde437c6dd11f5662e0
+
+#Eventos desde el servidor
+docker events

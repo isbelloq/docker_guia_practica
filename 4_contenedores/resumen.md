@@ -224,3 +224,31 @@ docker import [-m {mensaje_de_importacion}] {nombre_copia.tar} {nombre}[:etiquet
 ```
 
 > Nota: la importacion de copias crea una imagen!
+
+## Inspeccion de contenedores
+
+Para inspeccionar los diferentes elementos de un conedor se usa el comando
+
+```bash
+docker inspect [-f "{{.Categoria.Elemento}}"] {identificador_contenedor}
+```
+
+La bandera `-f`  sirve para filtrar algun elemento espesifico. Si no se pone esta bandera, se muestran todos los elementos de del contenedor.
+
+## Estadisticas de uso
+
+Con el comando `docker stats` se obtienen las estadisticas de uso del contenedor. Para obtener detalles se pueden usar las siguientes banderas
+
+```bash
+docker stats [flags] [lista de contenedores]
+```
+
+Las opciones de `flags` pueden ser:
+
+* `-a` o `--all` Se muestran todos los contenedores si no se especifican la lista de contenedores, se incluyen los contenedores pausados.
+* `--no-stream` No se muestran las estadisticas en tipo real, solo se muestra una foto de las estadisticas.
+* `--no-trunc` no trunca la salida.
+
+## Eventos
+
+El comando `docker events` muestra los eventos que surgen en un contenedor.
