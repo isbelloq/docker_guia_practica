@@ -7,6 +7,9 @@ Repositorio con los comandos del libro Docker - Guia practica de Alberto Gonzale
 2. __4_contenedores__
     * __cap4-scripts.ps1__ Se profundiza en los comandos introductorios del capitulo 3 y se agregan mas.
     * __resumen.md__ Archivo markdown con anotaciones de uso de los comandos en `cap4-scripts.ps1`
+3. __5_imagenes__
+    * __cap5-scripts.ps1__ Comandos para manipulacion de imagenes (listado, descarga, eliminado, entre otros).
+    * __resumen.md__ Archivo markdown con anotaciones de uso de los comandos en `cap5-scripts.ps1`
 
 
 ```bash
@@ -16,6 +19,9 @@ docker_guia_practica
 │   └── resumen.md
 ├── 4_contenedores
 │   ├── cap4-scripts.ps1
+│   └── resumen.md
+├── 5_imagenes
+│   ├── cap5-scripts.ps1
 │   └── resumen.md
 └── README.md
 ```
