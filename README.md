@@ -31,7 +31,7 @@ docker_guia_practica
 ├── 6_generar_imagenes
 │   ├── cap6-scripts.ps1
 │   ├── resumen.md
-|   └── debianvim
-|       └── Dockerfile
+│   └── debianvim
+│       └── Dockerfile
 └── README.md
 ```
