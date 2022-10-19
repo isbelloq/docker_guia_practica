@@ -14,7 +14,10 @@ Repositorio con los comandos del libro Docker - Guia practica de Alberto Gonzale
 3. __6_generar_imagenes__
     * __cap6-scripts.ps1__ Comando de creacion de imagen en base a `Dockerfile`.
     * __resumen.md__ Archivo markdown con anotaciones de uso de los comandos en `cap6-scripts.ps1` y generacion de archivos `Dockerfile`
+    * __cmd__ Directorio con `Dockerfile` para crear la imagen con ejemplo de `CMD`
     * __debianvim__ Directorio con `Dockerfile` para crear la imagen `debianvim`
+    * __debianvol__ Directorio con `Dockerfile` para crear la imagen con ejemplo de `VOLUME`
+    * __entrypoint__ Directorio con `Dockerfile` para crear la imagen con ejemplo de `ENTRYPOINT`
 
 
 ```bash
@@ -31,7 +34,13 @@ docker_guia_practica
 ├── 6_generar_imagenes
 │   ├── cap6-scripts.ps1
 │   ├── resumen.md
-│   └── debianvim
+│   ├──cmd
+│   │   └── Dockerfile
+│   ├──debianvim
+│   │   └── Dockerfile
+│   ├──debianvol
+│   │   └── Dockerfile
+│   └──entrypoint
 │       └── Dockerfile
 └── README.md
 ```
