@@ -282,3 +282,53 @@ FROM debian
 RUN mkdir /datos && date > /datos/fecha.txt
 VOLUMEN /datos
 ```
+
+### USER
+
+```
+USER {usuario|uid}
+```
+
+Por defecto los comando son ejecutados como administrador, `USER root` o `USER 0`, pero eso se puede cambiar con `USER`
+
+__Ejemplo__
+
+```
+FROM debian
+USER nobody
+CDM id
+```
+
+o
+
+```
+FROM debian
+USER 65534
+CDM id
+```
+
+Al crear el contenedor con `docker run debianuser` se imprime
+```
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+```
+
+### WORKDIR
+
+```
+WORKDIR {directorio}
+```
+
+Se cambia el directorio de trabajo del contenedor, por defecto es `/`. Esta sentencia se puede utilizar tantas veces como sea necesario.
+
+__Ejemplo__
+
+```
+FROM debian
+WORKDIR /tmp
+RUN echo "test" > test.txt
+WORKDIR /var/tmp
+RUN echo "test2" > test2.txt
+CMD ls -l /tmp/test.txt /var/temp/test2.txt
+```
+
+En el ejemplo queda el directorio `/var/tmp` como directorio de trabajo ya que es el ultmo en la ejecucion

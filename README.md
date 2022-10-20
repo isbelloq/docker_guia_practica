@@ -18,6 +18,7 @@ Repositorio con los comandos del libro Docker - Guia practica de Alberto Gonzale
     * __debianvim__ Directorio con `Dockerfile` para crear la imagen `debianvim`
     * __debianvol__ Directorio con `Dockerfile` para crear la imagen con ejemplo de `VOLUME`
     * __entrypoint__ Directorio con `Dockerfile` para crear la imagen con ejemplo de `ENTRYPOINT`
+    * __user__ Directorio con `Dockerfile` para crear la imagen con ejemplo de `USER`
 
 
 ```bash
@@ -40,7 +41,9 @@ docker_guia_practica
 │   │   └── Dockerfile
 │   ├──debianvol
 │   │   └── Dockerfile
-│   └──entrypoint
+│   ├──entrypoint
+│   │   └── Dockerfile
+│   └──user
 │       └── Dockerfile
 └── README.md
 ```
