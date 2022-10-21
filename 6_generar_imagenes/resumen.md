@@ -44,19 +44,6 @@ __Ejemplo__
 FROM debian:whezzy
 ```
 
-### MANTAINER
-```
-MANTAINER {name}
-```
-
-Autor de la imagen
-
-__Ejemplo__
-
-```
-MANTAINER Santiago Bello <isbelloq@example.com>
-```
-
 ### RUN
 ```
 RUN {comando}
@@ -195,6 +182,43 @@ Al hacer `docker run -ti debianentrypoint /etc/hostname` se imprime en la consol
 bc210766c799
 ```
 
+### WORKDIR
+
+```
+WORKDIR {directorio}
+```
+
+Se cambia el directorio de trabajo del contenedor, por defecto es `/`. Esta sentencia se puede utilizar tantas veces como sea necesario.
+
+__Ejemplo__
+
+```
+FROM debian
+WORKDIR /tmp
+RUN echo "test" > test.txt
+WORKDIR /var/tmp
+RUN echo "test2" > test2.txt
+CMD ls -l /tmp/test.txt /var/temp/test2.txt
+```
+
+En el ejemplo queda el directorio `/var/tmp` como directorio de trabajo ya que es el ultmo en la ejecucion
+
+### SHELL
+
+```
+SHELL ["{comando}", "{argumento_1}", ..., "{argumento_n}"]
+```
+
+Por defecto el comando de ejecucion de una terminal es `/bin/sh -c`, con `SHELL` se puede cambiar este comando y poner mas parametros. Lo especificado en `SHELL` es ejecutado con `CMD`
+
+__Ejemplo__
+
+```
+FROM debian
+SHELL ["/bin/sh", "-x", "-c"]
+CMD date
+```
+
 ### EXPOSE
 
 ```
@@ -312,23 +336,61 @@ Al crear el contenedor con `docker run debianuser` se imprime
 uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
 ```
 
-### WORKDIR
+### LABEL
 
 ```
-WORKDIR {directorio}
+LABEL {llave_1}={valor_1} ... {llave_n}={valor_n}
 ```
 
-Se cambia el directorio de trabajo del contenedor, por defecto es `/`. Esta sentencia se puede utilizar tantas veces como sea necesario.
+Se agregan metadatos a la imagen generada. Son buena practica para identificar caracteristicas de una imagen.
+
+__Ejemplo__
+
+```
+LABEL version="1.0" descripcion="Ejemplo de metadato"
+```
+
+### ENV
+
+```
+ENV {llave_1}={valor_1} ... {llave_n}={valor_n}
+```
+
+Creacion o modificacion de variables de entorno del sistema.
+
+
+__Ejemplo__
+
+1. 
+```
+FROM debian
+ENV MIVARIABLE="Hola variable"
+CMD echo $MIVARIABLE
+```
+
+2. 
+```
+FROM debian
+RUN apt-get update && apt-get install -y locales locales-all
+ENV LC_ALL="es_ES.UTF-8" LANG="es_ES.UTF-8"
+CMD date
+```
+
+### ARG
+
+```
+ARG {nombre}[={valor_por_defecto}]
+```
+
+Con el parametro `ARG` es posible pasarle argumentos a la hora de construir una imagen
 
 __Ejemplo__
 
 ```
 FROM debian
-WORKDIR /tmp
-RUN echo "test" > test.txt
-WORKDIR /var/tmp
-RUN echo "test2" > test2.txt
-CMD ls -l /tmp/test.txt /var/temp/test2.txt
+ARG mivariable="Hola mundo"
+ENV VARIABLE=$mivariable
+CMD echo $VARIABLE
 ```
-
-En el ejemplo queda el directorio `/var/tmp` como directorio de trabajo ya que es el ultmo en la ejecucion
+* Al correr el comando `docker build -t debianarg .\6_generar_imagenes\arg\` y luego `docker run --rm debianarg` se retorna `Hola mundo`
+* Al correr el comando `docker build --build-arg mivariable="Holita mundito" -t debianarg .\6_generar_imagenes\arg\` y luego `docker run --rm debianarg` se retorna `Holita mundito`
